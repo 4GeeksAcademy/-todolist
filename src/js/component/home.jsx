@@ -1,25 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
-const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+
+function TodoTareas({label, is_done, onclick, toggle_todo}) {
+	return(
+		<div className="TodoTareas">
+			<input type="checbox" checked={is_done} onChange={toggle_todo}/>
+			<span className="todo-text">{label}</span>
+			<button className="btn btn-danger" onClick={onclick}>
+			Borrar
+			</button>
 		</div>
+	)
+}
+
+
+
+
+const Home = () => {
+	const [tareas, setTareas] = useState([])
+	return (
+		<form className="container d-flex flex-column align-items-center justify-content-start ">
+			<h1>Tododlist</h1>
+			<input
+				className="form-control form-control-lg" 
+				type="text" 
+				placeholder="Introduce tarea" 
+				aria-label=".form-control-lg example">
+			</input>
+			{tareas.map()}
+			<div className="listaTareas">
+				<input type="checkbox" />
+				<span>feed the cat</span>
+				<button className="btn btn-danger">borrar</button>
+			</div>
+		</form>
 	);
 };
 
